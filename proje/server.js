@@ -8,10 +8,12 @@ const io = require('socket.io')(http, {
     }
 });
 
-// === Statik dosyaları sun ===
+// === Statik dosyaları doğru şekilde sun ===
+// Bu satırda sadece tek bir 'proje' klasörünü kullanmalıyız
 app.use(express.static(__dirname + '/proje'));
 
-// === Ana sayfayı göster ===
+// === Ana sayfayı doğru şekilde göster ===
+// Bu satırda da aynı şekilde doğru yol kullanılmalı
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/proje/index.html');
 });
@@ -20,7 +22,6 @@ app.get('/', (req, res) => {
 io.on('connection', (socket) => {
     console.log('Bir kullanıcı bağlandı');
 
-    // Buraya oyunla ilgili socket olaylarını ekleyebilirsin
     socket.on('disconnect', () => {
         console.log('Bir kullanıcı ayrıldı');
     });
