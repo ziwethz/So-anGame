@@ -1,0 +1,360 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #1a1a1a, #4a4a4a);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 2rem;
+    border-radius: 1rem;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    min-width: 400px;
+}
+
+.menu h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.oyuncuGiris {
+    margin-bottom: 2rem;
+}
+
+#oyuncuAdi {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1.2rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+#oyuncuAdi::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#karakterSecim {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.karakter {
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.karakter:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.karakter.secili {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.karakterOnizleme {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-bottom: 0.5rem;
+    border: 2px solid #fff;
+}
+
+.karakterOnizleme.mavi { background: #3498db; }
+.karakterOnizleme.yesil { background: #2ecc71; }
+.karakterOnizleme.mor { background: #9b59b6; }
+
+button {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    margin: 0.5rem;
+    border-radius: 0.5rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: #45a049;
+    transform: scale(1.05);
+}
+
+.gizli {
+    display: none;
+}
+
+#oyunAlani {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+#ustBilgi {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+    display: flex;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    z-index: 100;
+}
+
+#harita {
+    width: 100%;
+    height: calc(100vh - 120px);
+    position: relative;
+    background: #2c3e50;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    overflow: hidden;
+}
+
+#altBilgi {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    z-index: 100;
+}
+
+#oyuncuBilgi {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#oyuncuAdiGoster {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffd700;
+}
+
+#aglamaBar {
+    width: 200px;
+    height: 20px;
+    background: #444;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#aglamaSeviyesi {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #ff6b6b, #ff0000);
+    transition: width 0.3s ease;
+}
+
+#esyalar {
+    display: flex;
+    gap: 1rem;
+}
+
+.esya {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.esya:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.esya.aktif {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.esyaIkon {
+    font-size: 1.5rem;
+}
+
+.esyaSayi {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    font-size: 0.8rem;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+/* Oyun elemanları */
+.oyuncu {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    border-radius: 50%;
+    transition: all 0.1s ease;
+    border: 3px solid #fff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.oyuncuAdi {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+.normalOyuncu {
+    background: #3498db;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="white" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>');
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.soganRuhu {
+    background: #e74c3c;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="white" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>');
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+    animation: pulse 1s infinite;
+}
+
+.benimKarakterim {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    border: 3px solid #ffd700;
+}
+
+.platform {
+    position: absolute;
+    background: #95a5a6;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 2px solid #7f8c8d;
+}
+
+.tezgah {
+    position: absolute;
+    background: #8b4513;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 2px solid #654321;
+    background-image: linear-gradient(45deg, #8b4513 25%, #a0522d 25%, #a0522d 50%, #8b4513 50%, #8b4513 75%, #a0522d 75%, #a0522d 100%);
+    background-size: 20px 20px;
+}
+
+.cadir {
+    position: absolute;
+    background: #e67e22;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 2px solid #d35400;
+}
+
+.kutu {
+    position: absolute;
+    background: #7f8c8d;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 2px solid #6c7a7d;
+    background-image: linear-gradient(45deg, #7f8c8d 25%, #95a5a6 25%, #95a5a6 50%, #7f8c8d 50%, #7f8c8d 75%, #95a5a6 75%, #95a5a6 100%);
+    background-size: 10px 10px;
+}
+
+.kokuBulutu {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 0, 0, 0.3);
+    border-radius: 50%;
+    animation: expand 2s infinite;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+    border: 2px solid rgba(255, 0, 0, 0.5);
+}
+
+.ayarGrubu {
+    margin: 1rem 0;
+    text-align: left;
+}
+
+.ayarGrubu label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.ayarGrubu input[type="range"] {
+    width: 100%;
+}
+
+.kontrolBilgi {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    text-align: left;
+}
+
+.kontrolBilgi p {
+    margin: 0.5rem 0;
+}
+
+#siralama {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    text-align: left;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes expand {
+    0% { transform: scale(0.5); opacity: 0.8; }
+    100% { transform: scale(1.5); opacity: 0; }
+} 
