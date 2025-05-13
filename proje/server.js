@@ -29,6 +29,6 @@ io.on('connection', (socket) => {
 
 // === Sunucuyu başlat ===
 const PORT = process.env.PORT || 8080;
-http.listen(PORT, '0.0.0.0', () => {
+http.listen(PORT, '8.8.8.8', () => {
     console.log(`Sunucu ${PORT} portunda çalışıyor`);
 });
